@@ -9,7 +9,7 @@ searchBtn.addEventListener("click", firstAPICALL);
 
 function firstAPICALL() {
     const cityName = document.querySelector("#searchInput").value;
-    const firstApiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=684b85a12af0b7eb0522d2b94d7fdee3";
+    const firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=684b85a12af0b7eb0522d2b94d7fdee3`;
     
     fetch(firstApiUrl).then(function(response) {
         return response.json();
@@ -21,3 +21,13 @@ function firstAPICALL() {
     });
 };
 
+function secondAPICALL(lat, lon) {
+    const secondApiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=684b85a12af0b7eb0522d2b94d7fdee3`;
+
+    fetch(secondApiURL).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data);
+        displayingCityData(data);
+    });
+};
