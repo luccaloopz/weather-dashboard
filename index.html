@@ -8,6 +8,7 @@
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/CSS/style.css">
         <title>Weather Dashboard</title>
     </head>
     <body>
@@ -19,30 +20,52 @@
 
         <main class="container-fluid">
             <div class="row vh-100">
-                <div class="col-lg-3 bg-light">
+                <div class="col-lg-2 bg-light">
                     <p>Search for a city:</p>
-                    <input id="searchInput" placeholder="city">
+                    <input id="searchInput" placeholder="City Name">
                     <button id="searchBtn">Search</button>
                 </div>
-                <div class="col-lg-9">
-                    <div class="row h-50">
-                        <p>hello</p>
+                <div class="col-lg-10 ">
+                    <div class="row h-50 margin">
+                        <div id="current-conditions">
+                            <h3 id="current-header"><span id="current-cityname">Paris </span><span id="current-date">01-01-9999 </span><span id="current-icon"></span></h1>
+                            <p>Temperature: <span id="current-temp"></span></p>
+                            <p>Humidity: <span id="current-humidity"></span></p>
+                            <p>Wind Speed: <span id="current-windspeed"></span></p>
+                            <p>UV Index: <span id="current-UV"></span></p>
+                        </div>
                     </div>
-                    <div class="row h-50">
-                        <div class="col-lg-2">
-                            <p>hello</p>
+                    <h3 id="fiveday">5-Day Forecast:</h3>
+                    <div class="row h-50 boxes">
+                        <div class="col boxes2">
+                            <p class="future-date">01-01-9999</p>
+                            <div class="furture-icon">iconhere</div>
+                            <p>Temperature: <span class="future-temp"></span></p>
+                            <p>Humidity: <span class="current-humidity"></span></p>
                         </div>
-                        <div class="col-lg-2">
-                            <p>hello</p>
+                        <div class="col boxes2">
+                            <p class="future-date">01-01-9999</p>
+                            <div class="furture-icon">iconhere</div>
+                            <p>Temperature: <span class="future-temp"></span></p>
+                            <p>Humidity: <span class="current-humidity"></span></p>
                         </div>
-                        <div class="col-lg-2">
-                            <p>hello</p>
+                        <div class="col boxes2">
+                            <p class="future-date">01-01-9999</p>
+                            <div class="furture-icon">iconhere</div>
+                            <p>Temperature: <span class="future-temp"></span></p>
+                            <p>Humidity: <span class="current-humidity"></span></p>
                         </div>
-                        <div class="col-lg-2">
-                            <p>hello</p>
+                        <div class="col boxes2">
+                            <p class="future-date">01-01-9999</p>
+                            <div class="furture-icon">iconhere</div>
+                            <p>Temperature: <span class="future-temp"></span></p>
+                            <p>Humidity: <span class="current-humidity"></span></p>
                         </div>
-                        <div class="col-lg-2">
-                            <p>hello</p>
+                        <div class="col boxes2">
+                            <p class="future-date">01-01-9999</p>
+                            <div class="furture-icon">iconhere</div>
+                            <p>Temperature: <span class="future-temp"></span></p>
+                            <p>Humidity: <span class="current-humidity"></span></p>
                         </div>
                   </div>
             </div>

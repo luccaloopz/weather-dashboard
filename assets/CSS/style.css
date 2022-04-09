@@ -1,0 +1,31 @@
+#current-conditions {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+};
+
+#current-header {
+    padding-left: 5%;
+};
+
+.margin {
+    margin: 1%;
+};
+
+#fiveday {
+    margin: 1%;
+};
+
+.boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    /* margin-bottom: auto; */
+};
+
+.boxes2 {
+    background-color: rgb(47, 145, 145);
+    border: 1px solid black;
+
+};

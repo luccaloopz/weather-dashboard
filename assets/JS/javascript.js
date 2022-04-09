@@ -31,3 +31,8 @@ function secondAPICALL(lat, lon) {
         displayingCityData(data);
     });
 };
+
+function displayingCityData(data) {
+    //this will take the "data" object, parse through it to get specific data and append them to the text content of the html elements
+    //you might need to pass certain data through other functions that call other APIs for conversion. For example, the temp's default is in kelvin, meaning you'll need to use the temp conversion API
+}
