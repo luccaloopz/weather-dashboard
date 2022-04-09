@@ -21,11 +21,9 @@
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    /* margin-bottom: auto; */
 };
 
-.boxes2 {
+/* .boxes2 {
     background-color: rgb(47, 145, 145);
     border: 1px solid black;
-
-};
+}; */
