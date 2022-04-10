@@ -17,6 +17,12 @@ const currentUVIEl = document.querySelector("#current-UVI");
 
 const fiveDayHeader = document.querySelector("#fiveday");
 
+const day1Box = document.querySelector("#box1");
+const day2Box = document.querySelector("#box2");
+const day3Box = document.querySelector("#box3");
+const day4Box = document.querySelector("#box4");
+const day5Box = document.querySelector("#box5");
+
 const futureDate1El = document.querySelector("#future-date1");
 const futureIcon1El = document.querySelector("#furture-icon1");
 const futureTemp1El = document.querySelector("#future-temp1");
@@ -107,8 +113,9 @@ function displayingCurrentCityData(data) {
 function displayingFutureCityData(data) {
     console.log(data);
 
-    fiveDayHeader.textContent = "5-Day Forecast:"
+    fiveDayHeader.textContent = "5-Day Forecast:";
 
+    day1Box.classList.add("bg-info", "text-center", "border", "border-3", "border-dark", "rounded");
     const day1 = moment().add(1, 'days').format("ddd, MMMM Do YYYY");
     futureDate1El.textContent = day1;
     const futureIconCode1 = data.daily[1].weather[0].icon;
@@ -119,6 +126,7 @@ function displayingFutureCityData(data) {
     const futureHum1 = data.daily[1].humidity;
     futureHum1El.textContent = "Humidity: " + futureHum1 + "%";
 
+    day2Box.classList.add("bg-info", "text-center", "border", "border-3", "border-dark", "rounded");
     const day2 = moment().add(2, 'days').format("ddd, MMMM Do YYYY");
     futureDate2El.textContent = day2;
     const futureIconCode2 = data.daily[2].weather[0].icon;
@@ -129,6 +137,7 @@ function displayingFutureCityData(data) {
     const futureHum2 = data.daily[2].humidity;
     futureHum2El.textContent = "Humidity: " + futureHum2 + "%";
 
+    day3Box.classList.add("bg-info", "text-center", "border", "border-3", "border-dark", "rounded");
     const day3 = moment().add(3, 'days').format("ddd, MMMM Do YYYY");
     futureDate3El.textContent = day3;
     const futureIconCode3 = data.daily[3].weather[0].icon;
@@ -139,6 +148,7 @@ function displayingFutureCityData(data) {
     const futureHum3 = data.daily[3].humidity;
     futureHum3El.textContent = "Humidity: " + futureHum3 + "%";
 
+    day4Box.classList.add("bg-info", "text-center", "border", "border-3", "border-dark", "rounded");
     const day4 = moment().add(4, 'days').format("ddd, MMMM Do YYYY");
     futureDate4El.textContent = day4;
     const futureIconCode4 = data.daily[4].weather[0].icon;
@@ -149,6 +159,7 @@ function displayingFutureCityData(data) {
     const futureHum4 = data.daily[4].humidity;
     futureHum4El.textContent = "Humidity: " + futureHum4 + "%";
 
+    day5Box.classList.add("bg-info", "text-center", "border", "border-3", "border-dark", "rounded");
     const day5 = moment().add(5, 'days').format("ddd, MMMM Do YYYY");
     futureDate5El.textContent = day5;
     const futureIconCode5 = data.daily[5].weather[0].icon;
