@@ -37,6 +37,7 @@ const futureHum5El = document.querySelector("#future-humidity5");
 searchBtn.addEventListener("click", firstAPICALL);
 
 function firstAPICALL() {
+    resetUVIColor();
     let cityName = document.querySelector("#searchInput").value;
     const firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=684b85a12af0b7eb0522d2b94d7fdee3`;
     cityName = cityName.split(" ");
@@ -85,6 +86,13 @@ function displayingCurrentCityData(data) {
     currentWindspeedEl.textContent = currentWindspeed + "MPH";
 
     const currentUVI = data.current.uvi;
+    if (currentUVI <= 2) {
+        currentUVIEl.classList.add("bg-success", "bg-gradient");
+    } else if (currentUVI >= 8) {
+        currentUVIEl.classList.add("bg-danger", "bg-gradient");
+    } else {
+        currentUVIEl.classList.add("bg-warning", "bg-gradient");
+    };
     currentUVIEl.textContent = currentUVI;
 };
 
@@ -142,8 +150,9 @@ function displayingFutureCityData(data) {
     futureHum5El.textContent = futureHum5 + "%";
 }; 
 
+function resetUVIColor() {
+    currentUVIEl.classList.remove("bg-success", "bg-danger" , "bg-warning" , "bg-gradient");
+};
+
 //for localStorage: I think ill have to get the data object that is returned, parse through it and identify only the things that I need, set it into local storage and simultaneouly append a new button to the left-hand side of the page which holds all the information of that particular city...
 //...Once that button is then clicked on, there's an event listener that gets the item from local storage and repopulates the page with all of the necessary data
-
-// for the UVI index change of color: I think this'll be some sort of conditional statements that set a specific class with a predetermined color to the textContent of the UVI index if the value from the data object is within certain ranges
-// ^ --> create a class for the span tag inside the current UVI p tag. using the conditionals above, assign certain bootrap classes to this span tag based off the uvi numbers. 
