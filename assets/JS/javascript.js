@@ -4,6 +4,8 @@
 //second api call: https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key} (to get actual 5 day forcast)
 
 const searchBtn = document.querySelector("#searchBtn");
+const cityButtonsContainer = document.querySelector("#city-buttons-container");
+
 const currentDateEl = document.querySelector("#current-date");
 const cityNameEl = document.querySelector("#current-cityname");
 const currentIconEl = document.querySelector("#current-icon");
@@ -13,26 +15,26 @@ const currentWindspeedEl = document.querySelector("#current-windspeed");
 const currentUVIEl = document.querySelector("#current-UVI");
 
 const futureDate1El = document.querySelector("#future-date1");
-const futureDate2El = document.querySelector("#future-date2");
-const futureDate3El = document.querySelector("#future-date3");
-const futureDate4El = document.querySelector("#future-date4");
-const futureDate5El = document.querySelector("#future-date5");
-
 const futureIcon1El = document.querySelector("#furture-icon1");
 const futureTemp1El = document.querySelector("#future-temp1");
 const futureHum1El = document.querySelector("#future-humidity1");
+const futureDate2El = document.querySelector("#future-date2");
 const futureIcon2El = document.querySelector("#furture-icon2");
 const futureTemp2El = document.querySelector("#future-temp2");
 const futureHum2El = document.querySelector("#future-humidity2");
+const futureDate3El = document.querySelector("#future-date3");
 const futureIcon3El = document.querySelector("#furture-icon3");
 const futureTemp3El = document.querySelector("#future-temp3");
 const futureHum3El = document.querySelector("#future-humidity3");
+const futureDate4El = document.querySelector("#future-date4");
 const futureIcon4El = document.querySelector("#furture-icon4");
 const futureTemp4El = document.querySelector("#future-temp4");
 const futureHum4El = document.querySelector("#future-humidity4");
+const futureDate5El = document.querySelector("#future-date5");
 const futureIcon5El = document.querySelector("#furture-icon5");
 const futureTemp5El = document.querySelector("#future-temp5");
 const futureHum5El = document.querySelector("#future-humidity5");
+
 
 searchBtn.addEventListener("click", firstAPICALL);
 
@@ -45,6 +47,7 @@ function firstAPICALL() {
         cityName[i] = cityName[i][0].toUpperCase() + cityName[i].slice(1);
     };
     cityName = cityName.join(" ");
+    createCityButton(cityName);
     cityNameEl.textContent = cityName + " - ";
 
     const currentDate = moment().format("dddd, MMMM Do YYYY");
@@ -153,6 +156,24 @@ function displayingFutureCityData(data) {
 function resetUVIColor() {
     currentUVIEl.classList.remove("bg-success", "bg-danger" , "bg-warning" , "bg-gradient");
 };
+
+function createCityButton(cityName) {
+    let cityBtn = document.createElement("button");
+    if (!cityButtonsContainer.textContent.includes(cityName)) {
+        cityBtn.textContent = cityName;
+        cityBtn.classList.add("row", "w-100");
+        cityButtonsContainer.append(cityBtn);
+    } else {
+        return
+    };
+
+    cityBtn.addEventListener("click", changingThePage);
+};
+
+function changingThePage() {
+    
+    firstAPICALL();
+}; 
 
 //for localStorage: I think ill have to get the data object that is returned, parse through it and identify only the things that I need, set it into local storage and simultaneouly append a new button to the left-hand side of the page which holds all the information of that particular city...
 //...Once that button is then clicked on, there's an event listener that gets the item from local storage and repopulates the page with all of the necessary data
