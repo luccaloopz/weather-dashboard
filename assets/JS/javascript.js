@@ -18,14 +18,19 @@ const futureDate3El = document.querySelector("#future-date3");
 const futureDate4El = document.querySelector("#future-date4");
 const futureDate5El = document.querySelector("#future-date5");
 
+const futureIcon1El = document.querySelector("#furture-icon1");
 const futureTemp1El = document.querySelector("#future-temp1");
 const futureHum1El = document.querySelector("#future-humidity1");
+const futureIcon2El = document.querySelector("#furture-icon2");
 const futureTemp2El = document.querySelector("#future-temp2");
 const futureHum2El = document.querySelector("#future-humidity2");
+const futureIcon3El = document.querySelector("#furture-icon3");
 const futureTemp3El = document.querySelector("#future-temp3");
 const futureHum3El = document.querySelector("#future-humidity3");
+const futureIcon4El = document.querySelector("#furture-icon4");
 const futureTemp4El = document.querySelector("#future-temp4");
 const futureHum4El = document.querySelector("#future-humidity4");
+const futureIcon5El = document.querySelector("#furture-icon5");
 const futureTemp5El = document.querySelector("#future-temp5");
 const futureHum5El = document.querySelector("#future-humidity5");
 
@@ -66,9 +71,8 @@ function secondAPICALL(lat, lon) {
 };
 
 function displayingCurrentCityData(data) {
-    //this takes the "data" object, parses through it to get specific data and appends them to the text content of the html elements
     const currentIconCode = data.current.weather[0].icon;
-    const currentIconURL = `http://openweathermap.org/img/wn/${currentIconCode}@2x.png`
+    const currentIconURL = `http://openweathermap.org/img/wn/${currentIconCode}@2x.png`;
     currentIconEl.setAttribute("src", currentIconURL);
     
     const currentTemp = data.current.temp;
@@ -87,43 +91,51 @@ function displayingCurrentCityData(data) {
 function displayingFutureCityData(data) {
     console.log(data);
 
-    //for the icons: set an img tag. grab the icon key from the data object, take note of the code that is the value assigned to the key, and input this code into the icon url in the appropriate spot. then take this newly spliced-in url and put it as an src attribute for the newly created img take. Do this same thing for the icon key for the current key of the data object as well.
-
-    const day1 = moment().add(1, 'days').format("dddd, MMMM Do YYYY");
+    const day1 = moment().add(1, 'days').format("ddd, MMMM Do YYYY");
     futureDate1El.textContent = day1;
-
+    const futureIconCode1 = data.daily[1].weather[0].icon;
+    const futureIconURL1 = `http://openweathermap.org/img/wn/${futureIconCode1}@2x.png`;
+    futureIcon1El.setAttribute("src", futureIconURL1);
     const futureTemp1 = data.daily[1].temp.day;
     futureTemp1El.textContent = futureTemp1 + "℉";
     const futureHum1 = data.daily[1].humidity;
     futureHum1El.textContent = futureHum1 + "%";
 
-    const day2 = moment().add(2, 'days').format("dddd, MMMM Do YYYY");
+    const day2 = moment().add(2, 'days').format("ddd, MMMM Do YYYY");
     futureDate2El.textContent = day2;
-
+    const futureIconCode2 = data.daily[2].weather[0].icon;
+    const futureIconURL2 = `http://openweathermap.org/img/wn/${futureIconCode2}@2x.png`;
+    futureIcon2El.setAttribute("src", futureIconURL2);
     const futureTemp2 = data.daily[2].temp.day;
     futureTemp2El.textContent = futureTemp2 + "℉";
     const futureHum2 = data.daily[2].humidity;
     futureHum2El.textContent = futureHum2 + "%";
 
-    const day3 = moment().add(3, 'days').format("dddd, MMMM Do YYYY");
+    const day3 = moment().add(3, 'days').format("ddd, MMMM Do YYYY");
     futureDate3El.textContent = day3;
-    
+    const futureIconCode3 = data.daily[3].weather[0].icon;
+    const futureIconURL3 = `http://openweathermap.org/img/wn/${futureIconCode3}@2x.png`;
+    futureIcon3El.setAttribute("src", futureIconURL3);
     const futureTemp3 = data.daily[3].temp.day;
     futureTemp3El.textContent = futureTemp3 + "℉";
     const futureHum3 = data.daily[3].humidity;
     futureHum3El.textContent = futureHum3 + "%";
 
-    const day4 = moment().add(4, 'days').format("dddd, MMMM Do YYYY");
+    const day4 = moment().add(4, 'days').format("ddd, MMMM Do YYYY");
     futureDate4El.textContent = day4;
-
+    const futureIconCode4 = data.daily[4].weather[0].icon;
+    const futureIconURL4 = `http://openweathermap.org/img/wn/${futureIconCode4}@2x.png`;
+    futureIcon4El.setAttribute("src", futureIconURL4);
     const futureTemp4 = data.daily[4].temp.day;
     futureTemp4El.textContent = futureTemp4 + "℉";
     const futureHum4 = data.daily[4].humidity;
     futureHum4El.textContent = futureHum4 + "%";
 
-    const day5 = moment().add(5, 'days').format("dddd, MMMM Do YYYY");
+    const day5 = moment().add(5, 'days').format("ddd, MMMM Do YYYY");
     futureDate5El.textContent = day5;
-
+    const futureIconCode5 = data.daily[5].weather[0].icon;
+    const futureIconURL5 = `http://openweathermap.org/img/wn/${futureIconCode5}@2x.png`;
+    futureIcon5El.setAttribute("src", futureIconURL5);
     const futureTemp5 = data.daily[5].temp.day;
     futureTemp5El.textContent = futureTemp5 + "℉";
     const futureHum5 = data.daily[5].humidity;

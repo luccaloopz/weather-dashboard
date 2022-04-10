@@ -16,14 +16,3 @@
 #fiveday {
     margin: 1%;
 };
-
-.boxes {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-};
-
-/* .boxes2 {
-    background-color: rgb(47, 145, 145);
-    border: 1px solid black;
-}; */
