@@ -6,6 +6,7 @@
 const searchBtn = document.querySelector("#searchBtn");
 const cityButtonsContainer = document.querySelector("#city-buttons-container");
 
+const currentContainer = document.querySelector("#current-conditions");
 const currentDateEl = document.querySelector("#current-date");
 const cityNameEl = document.querySelector("#current-cityname");
 const currentIconEl = document.querySelector("#current-icon");
@@ -13,6 +14,8 @@ const currentTempEl = document.querySelector("#current-temp");
 const currentHumidityEl = document.querySelector("#current-humidity");
 const currentWindspeedEl = document.querySelector("#current-windspeed");
 const currentUVIEl = document.querySelector("#current-UVI");
+
+const fiveDayHeader = document.querySelector("#fiveday");
 
 const futureDate1El = document.querySelector("#future-date1");
 const futureIcon1El = document.querySelector("#furture-icon1");
@@ -75,18 +78,20 @@ function secondAPICALL(lat, lon) {
 };
 
 function displayingCurrentCityData(data) {
+    currentContainer.setAttribute("style", "border: 4px solid black;")
+
     const currentIconCode = data.current.weather[0].icon;
     const currentIconURL = `http://openweathermap.org/img/wn/${currentIconCode}@2x.png`;
     currentIconEl.setAttribute("src", currentIconURL);
     
     const currentTemp = data.current.temp;
-    currentTempEl.textContent = currentTemp + "℉";
+    currentTempEl.textContent = "Temperature: " + currentTemp + "℉";
 
     const currentHumidity = data.current.humidity;
-    currentHumidityEl.textContent = currentHumidity + "%";
+    currentHumidityEl.textContent = "Humidity: " + currentHumidity + "%";
 
     const currentWindspeed = data.current.wind_speed;
-    currentWindspeedEl.textContent = currentWindspeed + "MPH";
+    currentWindspeedEl.textContent = "Wind Speed: " + currentWindspeed + "MPH";
 
     const currentUVI = data.current.uvi;
     if (currentUVI <= 2) {
@@ -96,11 +101,13 @@ function displayingCurrentCityData(data) {
     } else {
         currentUVIEl.classList.add("bg-warning", "bg-gradient");
     };
-    currentUVIEl.textContent = currentUVI;
+    currentUVIEl.textContent = "UV Index: " + currentUVI;
 };
 
 function displayingFutureCityData(data) {
     console.log(data);
+
+    fiveDayHeader.textContent = "5-Day Forecast:"
 
     const day1 = moment().add(1, 'days').format("ddd, MMMM Do YYYY");
     futureDate1El.textContent = day1;
@@ -108,9 +115,9 @@ function displayingFutureCityData(data) {
     const futureIconURL1 = `http://openweathermap.org/img/wn/${futureIconCode1}@2x.png`;
     futureIcon1El.setAttribute("src", futureIconURL1);
     const futureTemp1 = data.daily[1].temp.day;
-    futureTemp1El.textContent = futureTemp1 + "℉";
+    futureTemp1El.textContent = "Temperature: " + futureTemp1 + "℉";
     const futureHum1 = data.daily[1].humidity;
-    futureHum1El.textContent = futureHum1 + "%";
+    futureHum1El.textContent = "Humidity: " + futureHum1 + "%";
 
     const day2 = moment().add(2, 'days').format("ddd, MMMM Do YYYY");
     futureDate2El.textContent = day2;
@@ -118,9 +125,9 @@ function displayingFutureCityData(data) {
     const futureIconURL2 = `http://openweathermap.org/img/wn/${futureIconCode2}@2x.png`;
     futureIcon2El.setAttribute("src", futureIconURL2);
     const futureTemp2 = data.daily[2].temp.day;
-    futureTemp2El.textContent = futureTemp2 + "℉";
+    futureTemp2El.textContent = "Temperature: " + futureTemp2 + "℉";
     const futureHum2 = data.daily[2].humidity;
-    futureHum2El.textContent = futureHum2 + "%";
+    futureHum2El.textContent = "Humidity: " + futureHum2 + "%";
 
     const day3 = moment().add(3, 'days').format("ddd, MMMM Do YYYY");
     futureDate3El.textContent = day3;
@@ -128,9 +135,9 @@ function displayingFutureCityData(data) {
     const futureIconURL3 = `http://openweathermap.org/img/wn/${futureIconCode3}@2x.png`;
     futureIcon3El.setAttribute("src", futureIconURL3);
     const futureTemp3 = data.daily[3].temp.day;
-    futureTemp3El.textContent = futureTemp3 + "℉";
+    futureTemp3El.textContent = "Temperature: " + futureTemp3 + "℉";
     const futureHum3 = data.daily[3].humidity;
-    futureHum3El.textContent = futureHum3 + "%";
+    futureHum3El.textContent = "Humidity: " + futureHum3 + "%";
 
     const day4 = moment().add(4, 'days').format("ddd, MMMM Do YYYY");
     futureDate4El.textContent = day4;
@@ -138,9 +145,9 @@ function displayingFutureCityData(data) {
     const futureIconURL4 = `http://openweathermap.org/img/wn/${futureIconCode4}@2x.png`;
     futureIcon4El.setAttribute("src", futureIconURL4);
     const futureTemp4 = data.daily[4].temp.day;
-    futureTemp4El.textContent = futureTemp4 + "℉";
+    futureTemp4El.textContent = "Temperature: " + futureTemp4 + "℉";
     const futureHum4 = data.daily[4].humidity;
-    futureHum4El.textContent = futureHum4 + "%";
+    futureHum4El.textContent = "Humidity: " + futureHum4 + "%";
 
     const day5 = moment().add(5, 'days').format("ddd, MMMM Do YYYY");
     futureDate5El.textContent = day5;
@@ -148,9 +155,9 @@ function displayingFutureCityData(data) {
     const futureIconURL5 = `http://openweathermap.org/img/wn/${futureIconCode5}@2x.png`;
     futureIcon5El.setAttribute("src", futureIconURL5);
     const futureTemp5 = data.daily[5].temp.day;
-    futureTemp5El.textContent = futureTemp5 + "℉";
+    futureTemp5El.textContent = "Temperature: " + futureTemp5 + "℉";
     const futureHum5 = data.daily[5].humidity;
-    futureHum5El.textContent = futureHum5 + "%";
+    futureHum5El.textContent = "Humidity: " + futureHum5 + "%";
 }; 
 
 function resetUVIColor() {
@@ -164,14 +171,14 @@ function createCityButton(cityName) {
         cityBtn.classList.add("row", "w-100");
         cityButtonsContainer.append(cityBtn);
     } else {
-        return
+        return;
     };
 
     cityBtn.addEventListener("click", changingThePage);
 };
 
 function changingThePage() {
-    
+
     firstAPICALL();
 }; 
 
