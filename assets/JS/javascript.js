@@ -6,12 +6,17 @@
 const searchBtn = document.querySelector("#searchBtn");
 const currentDateEl = document.querySelector("#current-date");
 const cityNameEl = document.querySelector("#current-cityname");
+const currentIconEl = document.querySelector("#current-icon");
 const currentTempEl = document.querySelector("#current-temp");
 const currentHumidityEl = document.querySelector("#current-humidity");
 const currentWindspeedEl = document.querySelector("#current-windspeed");
 const currentUVIEl = document.querySelector("#current-UVI");
 
 const futureDate1El = document.querySelector("#future-date1");
+const futureDate2El = document.querySelector("#future-date2");
+const futureDate3El = document.querySelector("#future-date3");
+const futureDate4El = document.querySelector("#future-date4");
+const futureDate5El = document.querySelector("#future-date5");
 
 const futureTemp1El = document.querySelector("#future-temp1");
 const futureHum1El = document.querySelector("#future-humidity1");
@@ -62,6 +67,10 @@ function secondAPICALL(lat, lon) {
 
 function displayingCurrentCityData(data) {
     //this takes the "data" object, parses through it to get specific data and appends them to the text content of the html elements
+    const currentIconCode = data.current.weather[0].icon;
+    const currentIconURL = `http://openweathermap.org/img/wn/${currentIconCode}@2x.png`
+    currentIconEl.setAttribute("src", currentIconURL);
+    
     const currentTemp = data.current.temp;
     currentTempEl.textContent = currentTemp + "℉";
 
@@ -78,30 +87,42 @@ function displayingCurrentCityData(data) {
 function displayingFutureCityData(data) {
     console.log(data);
 
-    // const day1 = moment(moment().format("dddd, MMMM Do YYYY"), "DD-MM-YYYY").add(1, 'days'); //not sure how to do this yet
-    // futureDate1El.textContent = day1
+    //for the icons: set an img tag. grab the icon key from the data object, take note of the code that is the value assigned to the key, and input this code into the icon url in the appropriate spot. then take this newly spliced-in url and put it as an src attribute for the newly created img take. Do this same thing for the icon key for the current key of the data object as well.
 
-    //for the icons: you may have to use font awesome or some other 3rd party unless the api returns icons that you can use
+    const day1 = moment().add(1, 'days').format("dddd, MMMM Do YYYY");
+    futureDate1El.textContent = day1;
 
     const futureTemp1 = data.daily[1].temp.day;
     futureTemp1El.textContent = futureTemp1 + "℉";
     const futureHum1 = data.daily[1].humidity;
     futureHum1El.textContent = futureHum1 + "%";
 
+    const day2 = moment().add(2, 'days').format("dddd, MMMM Do YYYY");
+    futureDate2El.textContent = day2;
+
     const futureTemp2 = data.daily[2].temp.day;
     futureTemp2El.textContent = futureTemp2 + "℉";
     const futureHum2 = data.daily[2].humidity;
     futureHum2El.textContent = futureHum2 + "%";
 
+    const day3 = moment().add(3, 'days').format("dddd, MMMM Do YYYY");
+    futureDate3El.textContent = day3;
+    
     const futureTemp3 = data.daily[3].temp.day;
     futureTemp3El.textContent = futureTemp3 + "℉";
     const futureHum3 = data.daily[3].humidity;
     futureHum3El.textContent = futureHum3 + "%";
 
+    const day4 = moment().add(4, 'days').format("dddd, MMMM Do YYYY");
+    futureDate4El.textContent = day4;
+
     const futureTemp4 = data.daily[4].temp.day;
     futureTemp4El.textContent = futureTemp4 + "℉";
     const futureHum4 = data.daily[4].humidity;
     futureHum4El.textContent = futureHum4 + "%";
+
+    const day5 = moment().add(5, 'days').format("dddd, MMMM Do YYYY");
+    futureDate5El.textContent = day5;
 
     const futureTemp5 = data.daily[5].temp.day;
     futureTemp5El.textContent = futureTemp5 + "℉";
@@ -113,3 +134,4 @@ function displayingFutureCityData(data) {
 //...Once that button is then clicked on, there's an event listener that gets the item from local storage and repopulates the page with all of the necessary data
 
 // for the UVI index change of color: I think this'll be some sort of conditional statements that set a specific class with a predetermined color to the textContent of the UVI index if the value from the data object is within certain ranges
+// ^ --> create a class for the span tag inside the current UVI p tag. using the conditionals above, assign certain bootrap classes to this span tag based off the uvi numbers. 
