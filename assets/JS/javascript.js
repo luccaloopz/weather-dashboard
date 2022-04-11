@@ -84,7 +84,7 @@ function secondAPICALL(lat, lon) {
 };
 
 function displayingCurrentCityData(data) {
-    currentContainer.setAttribute("style", "border: 4px solid black;")
+    currentContainer.setAttribute("style", "border-bottom: 4px solid black;")
 
     const currentIconCode = data.current.weather[0].icon;
     const currentIconURL = `http://openweathermap.org/img/wn/${currentIconCode}@2x.png`;
@@ -179,8 +179,9 @@ function createCityButton(cityName) {
     let cityBtn = document.createElement("button");
     if (!cityButtonsContainer.textContent.includes(cityName)) {
         cityBtn.textContent = cityName;
-        cityBtn.classList.add("row", "w-100");
+        cityBtn.classList.add("row", "w-100", "list-group-item", "list-group-item-action");
         cityButtonsContainer.append(cityBtn);
+        
     } else {
         return;
     };
