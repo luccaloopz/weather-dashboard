@@ -45,18 +45,30 @@ const futureTemp5El = document.querySelector("#future-temp5");
 const futureHum5El = document.querySelector("#future-humidity5");
 
 
-searchBtn.addEventListener("click", firstAPICALL);
+let searchHistory = [];
 
-function firstAPICALL() {
-    resetUVIColor();
+searchBtn.addEventListener("click", function() {
     let cityName = document.querySelector("#searchInput").value;
-    const firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=684b85a12af0b7eb0522d2b94d7fdee3`;
+
+    if (!searchHistory.includes(cityName)) {
+        searchHistory.push(cityName);
+        localStorage.setItem("search", JSON.stringify(searchHistory));
+    }
+
     cityName = cityName.split(" ");
     for (let i = 0; i < cityName.length; i++) {
         cityName[i] = cityName[i][0].toUpperCase() + cityName[i].slice(1);
     };
     cityName = cityName.join(" ");
+    
+    firstAPICALL(cityName);
     createCityButton(cityName);
+});
+
+function firstAPICALL(cityName) {
+    resetUVIColor();
+    const firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=684b85a12af0b7eb0522d2b94d7fdee3`;
+
     cityNameEl.textContent = cityName + " - ";
 
     const currentDate = moment().format("dddd, MMMM Do YYYY");
@@ -186,13 +198,10 @@ function createCityButton(cityName) {
         return;
     };
 
-    cityBtn.addEventListener("click", changingThePage);
+    cityBtn.addEventListener("click", function() {
+        firstAPICALL(cityName);
+    });
 };
-
-function changingThePage() {
-
-    firstAPICALL();
-}; 
 
 //for localStorage: I think ill have to get the data object that is returned, parse through it and identify only the things that I need, set it into local storage and simultaneouly append a new button to the left-hand side of the page which holds all the information of that particular city...
 //...Once that button is then clicked on, there's an event listener that gets the item from local storage and repopulates the page with all of the necessary data
