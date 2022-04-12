@@ -45,7 +45,7 @@ const futureTemp5El = document.querySelector("#future-temp5");
 const futureHum5El = document.querySelector("#future-humidity5");
 
 
-let searchHistory = [];
+let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
 searchBtn.addEventListener("click", function() {
     let cityName = document.querySelector("#searchInput").value;
@@ -60,7 +60,7 @@ searchBtn.addEventListener("click", function() {
         cityName[i] = cityName[i][0].toUpperCase() + cityName[i].slice(1);
     };
     cityName = cityName.join(" ");
-    
+
     firstAPICALL(cityName);
     createCityButton(cityName);
 });
@@ -203,5 +203,25 @@ function createCityButton(cityName) {
     });
 };
 
-//for localStorage: I think ill have to get the data object that is returned, parse through it and identify only the things that I need, set it into local storage and simultaneouly append a new button to the left-hand side of the page which holds all the information of that particular city...
-//...Once that button is then clicked on, there's an event listener that gets the item from local storage and repopulates the page with all of the necessary data
+function grabbingCitiesFromLocalStorage() {
+    for (let i = 0; i < searchHistory.length; i++) {
+        searchHistoryBtn = document.createElement("button");
+        searchHistory[i] = searchHistory[i].split(" ");
+        for (let j = 0; j < searchHistory[i].length; j++) {
+            searchHistory[i][j] = searchHistory[i][j][0].toUpperCase() + searchHistory[i][j].slice(1);
+        };
+        searchHistory[i] = searchHistory[i].join(" ");
+        searchHistoryBtn.textContent = searchHistory[i];
+        searchHistoryBtn.classList.add("row", "w-100", "list-group-item", "list-group-item-action");
+        if (!cityButtonsContainer.textContent.includes(searchHistory[i])) {
+            cityButtonsContainer.append(searchHistoryBtn);
+        }
+
+        let searchHistoryCityName = searchHistory[i]
+        searchHistoryBtn.addEventListener("click", function() {
+            firstAPICALL(searchHistoryCityName);
+        });
+    };
+};
+
+grabbingCitiesFromLocalStorage();
