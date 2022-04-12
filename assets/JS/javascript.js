@@ -51,15 +51,14 @@ searchBtn.addEventListener("click", function() {
     let cityName = document.querySelector("#searchInput").value;
 
     if (!searchHistory.includes(cityName)) {
+        cityName = cityName.split(" ");
+        for (let i = 0; i < cityName.length; i++) {
+            cityName[i] = cityName[i][0].toUpperCase() + cityName[i].slice(1);
+        };
+        cityName = cityName.join(" ");
         searchHistory.push(cityName);
-        localStorage.setItem("search", JSON.stringify(searchHistory));
+        localStorage.setItem("search", JSON.stringify([...new Set(searchHistory)]));
     }
-
-    cityName = cityName.split(" ");
-    for (let i = 0; i < cityName.length; i++) {
-        cityName[i] = cityName[i][0].toUpperCase() + cityName[i].slice(1);
-    };
-    cityName = cityName.join(" ");
 
     firstAPICALL(cityName);
     createCityButton(cityName);
