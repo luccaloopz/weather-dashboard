@@ -1,4 +1,4 @@
-# weather-dashboard
+# Weather Dashboard
 
 ## **Deployed Link**
 Click on the following link to be re-directed to the live application: https://luccaloopz.github.io/weather-dashboard/
@@ -8,7 +8,7 @@ Click on the following link to be re-directed to the live application: https://l
 * `Email:` luccamartins2012@gmail.com
 * `GitHub Profile:` https://github.com/luccaloopz
 
-## **languages Used**
+## **Languages Used**
 * HTML
 * CSS
 * JavaScript
